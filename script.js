@@ -2,19 +2,20 @@
 
 const container = document.querySelector("#container");
 
-const size = document.querySelector("#changeSize")
+function createGrid(size){
+    container.innerHTML = '';
+    for (let i = 0; i < size * size; i++) {
+        const div = document.createElement("div");
+    
+        div.classList.add("classDiv");
+    
+        container.appendChild(div);
+    }
 
-for (let i = 0; i < 16 * 16; i++) {
-    const div = document.createElement("div");
+    //color changing property of div's
+    const outSideAccessDiv = document.querySelectorAll(".classDiv");
 
-    div.classList.add("classDiv");
-
-    container.appendChild(div);
-}
-
-const outSideAccessDiv = document.querySelectorAll(".classDiv");
-
-outSideAccessDiv.forEach((div) =>{
+    outSideAccessDiv.forEach((div) =>{
 
     div.addEventListener("mouseover", ()=> {
         const r = Math.floor(Math.random() * 256)
@@ -26,4 +27,17 @@ outSideAccessDiv.forEach((div) =>{
         div.style.backgroundColor = color;
     })
 })
+}
+
+//create initial grid
+createGrid(16);
+
+const size = document.querySelector("#changeSize")
+size.addEventListener("click", () =>{
+    let val = prompt("Please Enter Desired Size");
+    createGrid(val);
+})
+
+
+
 
